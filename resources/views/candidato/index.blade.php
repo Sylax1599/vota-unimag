@@ -8,7 +8,15 @@
 @section('content')
 
 <div class="container">
-    <a href="/home/candidatos/create" class="btn btn-primary mt-5 mb-4"> Añadir nuevo candidato</a>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Crud candidatos</li>
+  </ol>
+</nav>
+
+    <a href="/home/candidatos/create" class="btn btn-primary mt-2 mb-3"> Añadir nuevo candidato</a>
 
     <?php 
     foreach( $organos as $key=>$organo){

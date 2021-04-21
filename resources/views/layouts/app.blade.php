@@ -20,6 +20,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+
+    <link href="https://cdn.unimagdalena.edu.co/images/escudo/bg_light/128.png" rel="icon" type="image/x-icon" />
     
 
 </head>

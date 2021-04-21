@@ -6,6 +6,7 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
+use Illuminate\Support\Facades\Hash;
 
 HeadingRowFormatter::default('none');
 
@@ -20,7 +21,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'apellido' => $row['Apellido'],
             'codigo'    => $row['Codigo'],
             'numero_identificacion'    => $row['Numero_identificacion'],
-            'password'    => $row['Password'],
+            'password'    => Hash::make($row['Password']),
             'programa_id'    => $row['Programa_id'],
             'rol_id'    => $row['Rol_id']
         ]);
