@@ -8,7 +8,17 @@
 @section('content')
 
 <div class="container">
-    <a href="/home/candidatos/create" class="btn btn-primary mt-5"> Crear</a>
+    <a href="/home/candidatos/create" class="btn btn-primary mt-5 mb-4"> Añadir nuevo candidato</a>
+
+    <?php 
+    foreach( $organos as $key=>$organo){
+        $organos[$key] =$organo->nombre;
+    }
+    
+    foreach( $elecciones as $key=>$eleccion){
+        $elecciones[$key] =$eleccion->nombre;
+    }
+    ?>
 
     <table id="example" class="table table-striped table-hover table-sm" style="width:100%">
 
@@ -25,15 +35,15 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($candidatos as $candidato)
+                @foreach ($candidatos as $key=>$candidato)
                 <tr>
                 <th scope="row">{{$candidato->id}}</th>
                 <td>{{$candidato->nombre}}</td>
                 <td>{{$candidato->apellido}}</td>
                 <td>{{$candidato->numero_identificacion}}</td>
                 <td>{{$candidato->numero_tarjeton}}</td>
-                <td>{{$candidato->votacion_id}}</td>
-                <td>{{$candidato->organo_id}}</td>
+                <td>{{$elecciones[$key]}}</td>
+                <td>{{$organos[$key]}}</td>
                 <td>
                     <form action="{{ route('candidatos.destroy', $candidato->id) }}" method="POST">
                 
@@ -57,7 +67,11 @@
 
 </div>
     
+<?php 
+$organos=null;
+$elecciones=null;
 
+?>
     
 @section('js')
 

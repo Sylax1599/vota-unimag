@@ -9,8 +9,11 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <h2>Bienvenido, eres un admin</h2>
                 <a href="/home/candidatos"> candidatos</a>
+                <br>
+                <a href="/home/users/import"> Importar usuarios</a>
                 </div>
-
+                
+               
                 
             </div>
         </div>

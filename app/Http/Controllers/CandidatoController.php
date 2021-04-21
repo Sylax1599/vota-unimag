@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Candidato;
+use Illuminate\Support\Facades\DB;
 
 
 class CandidatoController extends Controller
@@ -28,8 +29,17 @@ class CandidatoController extends Controller
 
     public function index()
     {
+        //SQL PARA OBTENER EL NOMBRE DE LOS ORGANOS
+        $sql = 'SELECT organos.nombre from organos INNER JOIN candidatos ON candidatos.organo_id=organos.id';
+        $organos= DB::select($sql);
+
+        //SQL PARA OBTENER EL NOMBRE DE LAS VOTACIONES
+        $sql_elecciones= 'SELECT votacion.nombre from votacion INNER JOIN candidatos ON votacion.id=candidatos.votacion_id';
+        $elecciones=DB::select($sql_elecciones);
+
+        //Select from candidatos, hecha por laravel
         $candidatos= Candidato::all();
-        return view('candidato.index')->with('candidatos', $candidatos);
+        return view('candidato.index')->with('candidatos', $candidatos)->with('organos', $organos)->with('elecciones', $elecciones);
 
     }
 
@@ -40,7 +50,12 @@ class CandidatoController extends Controller
      */
     public function create()
     {
-        return view('candidato.create');
+        $sql_organos = 'SELECT id, nombre FROM organos';
+        $organos= DB::select($sql_organos);
+
+        $sql_votaciones = 'SELECT id, nombre FROM votacion';
+        $votaciones= DB::select($sql_votaciones);
+        return view('candidato.create')->with('organos', $organos)->with('votaciones', $votaciones);
     }
 
     /**
@@ -75,6 +90,8 @@ class CandidatoController extends Controller
         //
     }
 
+
+   
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,8 +100,14 @@ class CandidatoController extends Controller
      */
     public function edit($id)
     {
+        $sql_organos = 'SELECT id, nombre FROM organos';
+        $organos= DB::select($sql_organos);
+
+        $sql_votaciones = 'SELECT id, nombre FROM votacion';
+        $votaciones= DB::select($sql_votaciones);
+
         $candidato= Candidato::find($id);
-        return view('candidato.edit')->with('candidato', $candidato);
+        return view('candidato.edit')->with('candidato', $candidato)->with('organos', $organos)->with('votaciones', $votaciones);
 
     }
 

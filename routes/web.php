@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +25,7 @@ Route::resource('home/candidatos', 'App\Http\Controllers\CandidatoController');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/users', [App\Http\Controllers\HomeController::class, 'getUser']);
+
+
+Route::get('/home/users/import',[UserController::class,'importForm'])->name('users.importForm');
+Route::post('/home/users/import',[UserController::class, 'import'])->name('users.import');
