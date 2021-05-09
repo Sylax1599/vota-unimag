@@ -9,6 +9,16 @@
 
 @section('content')
 
+<div class="col-auto text-center mt-1 mb-5">
+  <h1>
+  <?php 
+  foreach($organo as $key){
+    echo $key->nombre;
+  }
+  ?>
+  </h1>
+</div>
+
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   
@@ -18,7 +28,7 @@
                 <img src="https://happytravel.viajes/wp-content/uploads/2020/04/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="image1" class="profile-icon" />
                 <div class="profile-name">{{$candidato->nombre}} {{$candidato->apellido}}</div>
                 <div class="profile-position"># {{$candidato->numero_tarjeton}}</div>
-                <a href="#" class="button" style="text-decoration: none;">Votar</a>
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-id="{{$candidato->id}}" data-bs-whatever="{{$candidato->nombre}}">Votar</button>
         </div>
     </div>
 @endforeach
@@ -30,6 +40,40 @@
   
 </div>
 
+
+<div class="modal fade" data-bs-backdrop="static" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar voto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{route('registroVoto')}}" method="POST">
+      @csrf
+      <div class="modal-body">
+      <input type="hidden" name="password" value="{{Auth::user()->password}}">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">ID:</label>
+            <input type="text" name="voto" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Confirmar contraseña:</label>
+            <input type="password" name="confirm_password" class="form-control" id="message-text"></input>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Confirmar voto</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+
 @endsection
+
+
 
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +24,10 @@ Auth::routes();
 Route::resource('home/candidatos', 'App\Http\Controllers\CandidatoController');
 Route::resource('home/organos', 'App\Http\Controllers\OrganoController');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'inicio']);
-Route::get('/inicio/votar/{id}', [App\Http\Controllers\HomeController::class, 'votar']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/inicio', [HomeController::class, 'inicio']);
+Route::get('/inicio/votar/{id}', [HomeController::class, 'votar']);
+Route::post('/inicio/votar', [HomeController::class, 'registrarVoto'])->name('registroVoto');
 
 
 
