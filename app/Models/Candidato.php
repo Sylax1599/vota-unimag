@@ -9,8 +9,5 @@ class Candidato extends Model
 {
     use HasFactory;
 
-    public function ModeloOrganos()
-    {
-        # code...
-    }
+    
 }

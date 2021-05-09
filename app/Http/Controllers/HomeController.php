@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Organo;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,7 +28,16 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function getUser(){
-        return view('user');
+    public function inicio(){
+
+        $organos= Organo::all();
+        return view('user')->with('organos', $organos);
+    }
+
+    public function votar($id){
+        //SQL PARA TRAER LOS CANDIDATOS
+        $sql = 'SELECT * FROM `candidatos` WHERE organo_id='.$id;
+        $candidatos= DB::select($sql);
+        return view('votar')->with('candidatos', $candidatos);
     }
 }

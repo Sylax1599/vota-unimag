@@ -85,6 +85,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="/home/candidatos">Candidatos</a>
                                     <a class="nav-link" href="/home/users/import">Votantes</a>
+                                    <a class="nav-link" href="/home/organos">Organos</a>
                                 </nav>
                             </div>
                           

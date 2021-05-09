@@ -20,6 +20,6 @@ class Admin
         if(Auth::user()->fullacces=='yes'):
             return $next($request);
         endif;
-        return redirect('users');
+        return redirect('inicio');
     }
 }

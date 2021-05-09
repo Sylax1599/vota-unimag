@@ -18,13 +18,15 @@ Route::get('/', function () {
 });
 
 
-
 Auth::routes();
 
 Route::resource('home/candidatos', 'App\Http\Controllers\CandidatoController');
+Route::resource('home/organos', 'App\Http\Controllers\OrganoController');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/users', [App\Http\Controllers\HomeController::class, 'getUser']);
+Route::get('/inicio', [App\Http\Controllers\HomeController::class, 'inicio']);
+Route::get('/inicio/votar/{id}', [App\Http\Controllers\HomeController::class, 'votar']);
+
 
 
 Route::get('/home/users/import',[UserController::class,'importForm'])->name('users.importForm');

@@ -12,51 +12,36 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Crud candidatos</li>
+    <li class="breadcrumb-item active" aria-current="page">Crud organo</li>
   </ol>
 </nav>
 
-    <a href="/home/candidatos/create" class="btn btn-primary mt-2 mb-3"> Añadir nuevo candidato</a>
+    <a href="/home/organos/create" class="btn btn-primary mt-2 mb-3"> Añadir nuevo organo</a>
 
-    <?php 
-    foreach( $organos as $key=>$organo){
-        $organos[$key] =$organo->nombre;
-    }
+  
+
     
-    foreach( $elecciones as $key=>$eleccion){
-        $elecciones[$key] =$eleccion->nombre;
-    }
-    ?>
-
-
     <table id="example" class="table table-striped table-hover table-sm" style="width:100%">
 
             <thead class="table-dark">
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col"># Indentificacion</th>
-                <th scope="col"># Tarjeton</th>
-                <th scope="col">Votacion</th>
-                <th scope="col">Organo</th>
                 <th scope="col">Accion</th>
+                
                 </tr>
             </thead>
             <tbody>
-                @foreach ($candidatos as $key=>$candidato)
+                @foreach ($organos as $key=>$organo)
                 <tr>
-                <th scope="row">{{$candidato->id}}</th>
-                <td>{{$candidato->nombre}}</td>
-                <td>{{$candidato->apellido}}</td>
-                <td>{{$candidato->numero_identificacion}}</td>
-                <td>{{$candidato->numero_tarjeton}}</td>
-                <td>{{$elecciones[$key]}}</td>
-                <td>{{$organos[$key]}}</td>
-                <td>
-                    <form action="{{ route('candidatos.destroy', $candidato->id) }}" method="POST">
+                <th scope="row">{{$organo->id}}</th>
+                <td>{{$organo->nombre}}</td>
                 
-                    <a href="candidatos/{{$candidato->id}}/edit" class="btn btn-primary">
+               
+                <td>
+                    <form action="{{ route('organos.destroy', $organo->id) }}" method="POST">
+                
+                    <a href="organos/{{$organo->id}}/edit" class="btn btn-primary">
                     <span class="far fa-edit"></span>
                     Editar</a>
                     @csrf
@@ -76,11 +61,7 @@
 
 </div>
     
-<?php 
-$organos=null;
-$elecciones=null;
 
-?>
     
 @section('js')
 

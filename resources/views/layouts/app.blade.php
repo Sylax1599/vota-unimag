@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     
-    <link rel="stylesheet" href="prueba.css">
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -95,7 +95,7 @@
     
  
   <div>
-        <section class="content">
+        <section class="container-fluid content">
             @yield('content')
         </section>
   <div>
