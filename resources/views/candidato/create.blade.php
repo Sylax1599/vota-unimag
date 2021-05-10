@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.admin')
 
 @section('css')
 <!-- CSS only -->
@@ -8,6 +8,16 @@
 @endsection
 
 @section('content')
+
+@section('navigation')
+  <ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item" aria-current="page">Home</li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="/home/candidatos">CRUD Candidato</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Crear candidato</li>
+    
+  </ol>
+@endsection
+
 
 <div class="container">
     <div class="row justify-content-center">
@@ -58,11 +68,12 @@
 
                         <button type="submit" class="btn btn-primary">Agregar</button>
                       </form>
-                  <div>
-                <div>
-            <div>
-        <div>
-    <div>
-<div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection

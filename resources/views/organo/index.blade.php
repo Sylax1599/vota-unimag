@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.admin')
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
@@ -9,12 +9,15 @@
 
 <div class="container">
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
+@section('navigation')
+  <ol class="breadcrumb mb-4 mt-4">
     <li class="breadcrumb-item"><a href="/home">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Crud organo</li>
+    <li class="breadcrumb-item active" aria-current="page">CRUD Organo</li>
   </ol>
-</nav>
+@endsection
+
+
+
 
     <a href="/home/organos/create" class="btn btn-primary mt-2 mb-3"> Añadir nuevo organo</a>
 

@@ -21,3 +21,8 @@ body {
 .copyright{
   color: #fff;
 }
+
+.image-tam{
+  width: 100% !important;
+  height: 80% !important;
+}

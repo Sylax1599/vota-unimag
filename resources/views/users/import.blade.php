@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.admin')
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
@@ -7,18 +7,18 @@
 
 @section('content')
 
-<div class="container">
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/home">Home</a></li>
+@section('navigation')
+  <ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item" aria-current="page">Home</li>
     <li class="breadcrumb-item active" aria-current="page">Importar votantes</li>
+    
   </ol>
-</nav>
+@endsection
 
+<div class="container">
     <div class="flex-center position-ref full-height">
         
-        <div class="container mt-5">
+        <div class="container mt-3">
             <h3>Importar votantes</h3>
     
             @if ( $errors->any() )
@@ -47,19 +47,14 @@
                         
                         </div>
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">Importar</button>
+                            <button type="submit" class="btn btn-primary mt-4">Importar</button>
                         </div>
                     </div>
                 </div>
             </form>
 
 
-            <div class="row mt-3">
-            <div class="col-5">
-            <a href="/home" class="btn btn-danger">Volver al panel de administración</a>
-            </div>
            
-            </div>
            
         </div>
     </div>
