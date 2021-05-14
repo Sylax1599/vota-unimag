@@ -29,9 +29,7 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function prueba(){
-        return view('organo.prueba');
-    }
+    
 
     public function inicio(){
 
@@ -55,15 +53,16 @@ class HomeController extends Controller
         $password=$request->get('password');
         $confirm_password=$request->get('confirm_password');
         $voto=$request->get('voto');
-        $mensaje="";
+
         if (Hash::check($confirm_password, $password))
         {
-            $mensaje="Contraseña coinciden";
+           
+            return response()->json(array("exists" => true, "voto"=> $voto));
         }
         else{
-            $mensaje="Error";
+            return response()->json(array("exists" => false));
         }
         
-        return view('pass')->with('mensaje', $mensaje)->with('voto', $voto);
+        
     }
 }
