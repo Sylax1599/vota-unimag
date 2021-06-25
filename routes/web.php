@@ -26,7 +26,9 @@ Route::resource('home/organos', 'App\Http\Controllers\OrganoController');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/inicio', [HomeController::class, 'inicio']);
-Route::get('/inicio/votar/{id}', [HomeController::class, 'votar']);
+Route::get('/inicio/votar/{id}', [HomeController::class, 'votar'])->name('candidatos')->where(['id' => '[0-9]+']);
+Route::get('/inicio/votar/', [HomeController::class, 'error']);
+Route::get('/inicio/votado/{id}', [HomeController::class, 'isVotado']);
 Route::post('/inicio/votar', [HomeController::class, 'registrarVoto'])->name('registroVoto');
 
 

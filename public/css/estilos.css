@@ -26,3 +26,23 @@ body {
   width: 100% !important;
   height: 80% !important;
 }
+
+.img-responsive{
+  margin-top: 20px;
+}
+
+
+@media (max-width: 730px){
+
+
+.img-responsive{
+  width: 70%;
+}
+
+.logo{
+  width: 15%;
+}
+
+
+
+}

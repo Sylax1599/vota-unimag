@@ -12,6 +12,8 @@
 Bievenidos
 </h1>
 
+
+
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -55,3 +57,24 @@ Bievenidos
 
 @endsection
 
+@section('js')
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<script>
+  new Vue({
+    el: '#app',
+    data(){
+      return{
+        name: 'Hola',
+        apellido: 'Hey'
+      }
+    },
+    methods:{
+      prueba(){
+        console.log("Click desde vue");
+      }
+    }
+  })
+</script>
+@endsection

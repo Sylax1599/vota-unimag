@@ -32,7 +32,7 @@
                 <div class="col-md-12 text-center">
                     <span class="display-1 d-block">404</span>
                     <img src="{{ asset('images/error404.jpg') }}" alt="ERROR" class="img-fluid tamanio">
-                    <div class="mb-4 ">La página que intenta solicitar no existe</div>
+                    <div class="mb-4 ">La página que intenta solicitar tiene amsiedad</div>
                     <a href="/" class="btn btn-link">Volver a la página inicial</a>
                 </div>
             </div>
