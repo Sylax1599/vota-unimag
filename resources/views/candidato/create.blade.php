@@ -25,29 +25,34 @@
             <div class="card">
                 <div class="card-header">{{ __('Crear candidato') }}</div>
                   <div class="card-body">
-                      <form action="/home/candidatos" method="POST">
+                      <form action="/home/candidatos" method="POST" enctype="multipart/form-data">
 
                           @csrf
                         <div class="mb-3">
                           <label for="nombre" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" id="nombre" name="nombre" tabindex="1">
+                          <input type="text" class="form-control" id="nombre" name="nombre" tabindex="1" required>
                         </div>
                         <div class="mb-3">
                           <label for="apellido" class="form-label">Apellido</label>
-                          <input type="text" class="form-control" id="apellido" name="apellido">
+                          <input type="text" class="form-control" id="apellido" name="apellido" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="imagen" class="form-label">Imagen</label>
+                          <input class="form-control" type="file" name="file" accept=".jpg,.jpeg,.png" required>
                         </div>
                         <div class="mb-3">
                           <label for="cedula" class="form-label">Cedula</label>
-                          <input type="text" class="form-control" id="cedula" name="cedula">
+                          <input type="text" class="form-control" id="cedula" name="cedula" required>
                         </div>
 
                         <div class="mb-3">
                           <label for="tarjeton" class="form-label"># Tarjeton</label>
-                          <input type="text" class="form-control" id="tarjeton" name="tarjeton">
+                          <input type="text" class="form-control" id="tarjeton" name="tarjeton" required>
                         </div>
 
                         <div class="mb-3">
-                          <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="votacion" value="">
+                          <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="votacion" value="" required>
                             <option selected>Seleccionar la elección</option>
                             @foreach ($votaciones as $votacion)
                               <option value="{{$votacion->id}}">{{$votacion->nombre}}</option>
@@ -56,7 +61,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="organo" value="">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="organo" value="" required>
                               <option selected>Seleccionar un organo</option>
                               @foreach ($organos as $organo)
                                 <option value="{{$organo->id}}">{{$organo->nombre}}</option>

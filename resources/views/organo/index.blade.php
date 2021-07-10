@@ -30,6 +30,7 @@
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Color</th>
                 <th scope="col" style="width: 40%">Accion</th>
                 
                 </tr>
@@ -39,9 +40,10 @@
                 <tr>
                 <th scope="row">{{$organo->id}}</th>
                 <td>{{$organo->nombre}}</td>
+                <td>{{$organo->color}}</td>
                 
                
-                <td>
+                <td class="text-center">
                     <form action="{{ route('organos.destroy', $organo->id) }}" method="POST">
                 
                     <a href="organos/{{$organo->id}}/edit" class="btn btn-primary">

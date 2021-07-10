@@ -37,6 +37,7 @@ class OrganoController extends Controller
     {
         $organos= new Organo();
         $organos->nombre= $request->get('nombre');
+        $organos->color= $request->get('favcolor');
         
 
         $organos->save();
@@ -79,6 +80,7 @@ class OrganoController extends Controller
     {
         $organo= Organo::find($id);
         $organo->nombre= $request->get('nombre');
+        $organo->color= $request->get('favcolor');
         $organo->save();
 
         return redirect('/home/organos');

@@ -33,6 +33,28 @@
                                 class="form-control" 
                                 id="nombre" name="nombre" value="{{$organo->nombre}}">
                               </div>
+
+                              <div class="mb-3">
+                              <label for="nombre" class="form-label">Color</label>
+                              <input type="color" class="form-control" id="favcolor" name="favcolor" value="#dce9ff" list="reds" />
+                              <datalist id="reds">
+                              <option>#ffc2c2</option>
+                              <option>#ffd3c2</option>
+                              <option>#fff9c2</option>
+                              <option>#c9ffc2</option>
+                              <option>#c2ffe1</option>
+                              <option>#c2fffa</option>
+                              <option>#c2f3ff</option>
+                              <option>#c2d0ff</option>
+                              <option>#cbc2ff</option>
+                              <option>#dcc2ff</option>
+                              <option>#eec2ff</option>
+                              <option>#ffc2f5</option>
+                              <option>#ffc2db</option>
+                              <option>#ffc2ca</option>
+                            </datalist>
+                              <br>
+                            </div>
                              
 
                                 <a href="/home/organos" class="btn btn-secondary">Cancelar</a> 

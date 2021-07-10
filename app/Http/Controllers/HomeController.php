@@ -36,16 +36,30 @@ class HomeController extends Controller
 
     public function inicio(){
 
-        $organos= Organo::all();
-        return view('user')->with('organos', $organos);
+        
+        return view('user');
     }
+
+    public function apiOrganos(){
+        $organos= Organo::all();
+        return  response()->json(array("organos"=> $organos));
+    }
+
 
     public function error(){
 
         return view('errors.404');
     }
     public function votar($id){
-        //SQL PARA TRAER LOS CANDIDATOS
+        //SQL PARA TRAER MOSTRAR EL ORGANO SELECCIONADO
+        $sql_organos = 'SELECT * FROM `organos` WHERE id='.$id;
+        $organo= DB::select($sql_organos);
+
+        return view('votar')->with('organo', $organo);
+       
+    }
+
+    public function apiVotar($id){
         $sql = 'SELECT * FROM `candidatos` WHERE organo_id='.$id;
         $candidatos= DB::select($sql);
 
@@ -53,8 +67,7 @@ class HomeController extends Controller
         $sql_organos = 'SELECT * FROM `organos` WHERE id='.$id;
         $organo= DB::select($sql_organos);
 
-        return view('votar')->with('candidatos',$candidatos)->with('organo', $organo);
-       
+        return  response()->json(array("candidatos"=> $candidatos));
     }
 
     public function isVotado($id){
@@ -102,5 +115,36 @@ class HomeController extends Controller
         }
         
         
+    }
+
+    public function viewVotos(){
+
+        return view('total');
+    }
+
+    public function apiTotalVotos()
+    {
+
+        //SQL Para saber el total de votos por candidatos
+        $votos_candidatos = DB::table('candidatos')
+            ->join('votos', 'candidatos.id', '=', 'votos.candidatos_id')
+            ->join('organos', 'candidatos.organo_id', '=', 'organos.id')
+            ->select(DB::raw('candidatos.nombre, candidatos.apellido, organos.nombre as organo_nombre, COUNT(*) as votos'))
+            ->groupBy('candidatos.nombre', 'candidatos.apellido','organos.nombre')->get();
+        
+        //SQL para el total de votos
+        $total_votos = DB::table('votos')
+        ->select(DB::raw('COUNT(*) as total_votos'))
+        ->get();
+
+        //SQL para el filtro de organos
+        $organos = DB::table('organos')
+        ->select('*')
+        ->get();
+        
+        return response()->json(array("votos_candidatos"=> $votos_candidatos, 
+        "total_votos"=>$total_votos,
+        "organos"=>$organos
+        ));
     }
 }

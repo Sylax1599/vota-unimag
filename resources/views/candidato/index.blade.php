@@ -37,11 +37,12 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
+                <th scope="col">Imagen</th>
                 <th scope="col"># Indentificacion</th>
                 <th scope="col"># Tarjeton</th>
                 <th scope="col">Votacion</th>
                 <th scope="col">Organo</th>
-                <th scope="col">Accion</th>
+                <th scope="col" style="width: 20%">Accion</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +51,7 @@
                 <th scope="row">{{$candidato->id}}</th>
                 <td>{{$candidato->nombre}}</td>
                 <td>{{$candidato->apellido}}</td>
+                <td class="text-center"><img src="{{ asset('storage/images/' . $candidato->imagen) }}" style="width: 50%; height: 100px;" alt="fd" srcset=""></td>
                 <td>{{$candidato->numero_identificacion}}</td>
                 <td>{{$candidato->numero_tarjeton}}</td>
                 <td>{{$elecciones[$key]}}</td>
@@ -68,6 +70,8 @@
                     </form>
                 </td>
                 </tr>
+
+                
                 @endforeach
             </tbody>
 

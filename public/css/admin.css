@@ -2983,7 +2983,7 @@ input[type=button].btn-block {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 200px;
   z-index: 1000;
   display: none;
   float: left;
@@ -10247,3 +10247,21 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
+
+
+.degree:after {
+  content: 'Votos';
+  position: absolute;
+  font-size: 3rem;
+  margin-top: 0.4rem;
+  font-weight: 400;
+}
+
+@media (max-width: 1100px){
+  .degree:after{
+    font-size: 2rem;
+  }
+}
+
+[v-cloak] > * { display:none; }

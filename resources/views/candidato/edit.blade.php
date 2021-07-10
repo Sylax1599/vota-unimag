@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Editar candidato') }}</div>
                   <div class="card-body">
-                      <form action="/home/candidatos/{{$candidato->id}}" method="POST">
+                      <form action="/home/candidatos/{{$candidato->id}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                               <div class="mb-3">
@@ -40,6 +40,11 @@
                                 <input type="text" 
                                 class="form-control" id="apellido" 
                                 name="apellido" value="{{$candidato->apellido}}">
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="imagen" class="form-label">Imagen</label>
+                                <input class="form-control" value="{{$candidato->imagen}}" type="file" name="file" accept=".jpg,.jpeg,.png" required>
                               </div>
                               <div class="mb-3">
                                 <label for="cedula" class="form-label">Cedula</label>

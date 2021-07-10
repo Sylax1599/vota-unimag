@@ -66,15 +66,21 @@ class CandidatoController extends Controller
      */
     public function store(Request $request)
     {
-        $candidatos= new Candidato();
-        $candidatos->nombre= $request->get('nombre');
-        $candidatos->apellido= $request->get('apellido');
-        $candidatos->numero_identificacion= $request->get('cedula');
-        $candidatos->numero_tarjeton= $request->get('tarjeton');
-        $candidatos->votacion_id= $request->get('votacion');
-        $candidatos->organo_id= $request->get('organo');
+        if ($request->hasFile('file')) {
+            $request->file->store('images', 'public');
 
-        $candidatos->save();
+            $candidatos= new Candidato();
+            $candidatos->nombre= $request->get('nombre');
+            $candidatos->apellido= $request->get('apellido');
+            $candidatos->imagen= $request->file->hashName();
+            $candidatos->numero_identificacion= $request->get('cedula');
+            $candidatos->numero_tarjeton= $request->get('tarjeton');
+            $candidatos->votacion_id= $request->get('votacion');
+            $candidatos->organo_id= $request->get('organo');
+    
+            $candidatos->save();
+        }
+       
 
         return redirect('/home/candidatos');
     }
@@ -121,6 +127,16 @@ class CandidatoController extends Controller
     public function update(Request $request, $id)
     {
         $candidato= Candidato::find($id);
+
+        $image_path='storage/images/'.$candidato->imagen;
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+       
+        if ($request->hasFile('file')) {
+            $request->file->store('images', 'public');
+            $candidato->imagen= $request->file->hashName();
+        }
         $candidato->nombre= $request->get('nombre');
         $candidato->apellido= $request->get('apellido');
         $candidato->numero_identificacion= $request->get('cedula');
@@ -142,7 +158,15 @@ class CandidatoController extends Controller
     public function destroy($id)
     {
         $candidato= Candidato::find($id);
+        $image_path='storage/images/'.$candidato->imagen;
+        if (file_exists($image_path)) {
+
+            unlink($image_path);
+     
+        }
         $candidato->delete();
         return redirect('/home/candidatos');
     }
+
+    
 }

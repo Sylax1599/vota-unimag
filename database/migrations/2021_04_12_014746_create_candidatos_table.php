@@ -17,6 +17,7 @@ class CreateCandidatosTable extends Migration
             $table->increments('id');
             $table->string('nombre',50);
             $table->string('apellido',50);
+            $table->string('imagen');
             $table->integer('numero_identificacion');
             $table->integer('numero_tarjeton');
             $table->unsignedInteger("votacion_id");

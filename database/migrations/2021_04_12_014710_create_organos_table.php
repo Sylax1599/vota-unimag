@@ -16,6 +16,7 @@ class CreateOrganosTable extends Migration
         Schema::create('organos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 50);
+            $table->string('color', 50);
             $table->timestamps();
         });
     }
