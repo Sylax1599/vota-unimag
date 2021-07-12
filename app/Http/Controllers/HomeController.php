@@ -147,4 +147,22 @@ class HomeController extends Controller
         "organos"=>$organos
         ));
     }
+
+    public function apiEstadisticaCandidatos()
+    {
+        //SQL Para saber el total de votos por candidatos
+        $votos_candidatos = DB::table('candidatos')
+            ->join('votos', 'candidatos.id', '=', 'votos.candidatos_id')
+            ->join('organos', 'candidatos.organo_id', '=', 'organos.id')
+            ->select(DB::raw('candidatos.nombre, candidatos.apellido, organos.nombre as organo_nombre, COUNT(*) as votos'))
+            ->groupBy('candidatos.nombre', 'candidatos.apellido','organos.nombre')->get();
+        
+        return response()->json(array("votos_candidatos"=> $votos_candidatos
+        ));
+    }
+
+    public function estadisticas()
+    {
+        return view('estadisticas');
+    }
 }

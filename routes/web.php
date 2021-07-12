@@ -46,6 +46,11 @@ Route::get('/home/total/', [HomeController::class, 'viewVotos']);
 //API para extraer datos
 Route::get('/api/total/', [HomeController::class, 'apiTotalVotos']);
 
+//Vista estadisticas
+Route::get('/home/estadisticas', [HomeController::class, 'estadisticas']);
+//API para extraer votos de candidatos para las estadisticas
+Route::get('/api/estadisticas/candidatos', [HomeController::class, 'apiEstadisticaCandidatos']);
+
 //Importar usuario
 Route::get('/home/users/import',[UserController::class,'importForm'])->name('users.importForm');
 Route::post('/home/users/import',[UserController::class, 'import'])->name('users.import');

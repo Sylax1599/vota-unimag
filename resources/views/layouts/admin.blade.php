@@ -73,31 +73,37 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Admin</div>
                             <a class="nav-link" href="/home">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Panel de administración
+                                <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i></i></div>
+                                Administración
                             </a>
                             <div class="sb-sidenav-menu-heading">Opciones</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-cog"></i></div>
                                 Gestion de elección
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/home/candidatos">Candidatos</a>
-                                    <a class="nav-link" href="/home/users/import">Votantes</a>
-                                    <a class="nav-link" href="/home/organos">Organos</a>
+                                    <a class="nav-link" href="/home/candidatos">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                    Candidatos</a>
+                                    <a class="nav-link" href="/home/users/import">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user-check"></i></div>
+                                    Votantes</a>
+                                    <a class="nav-link" href="/home/organos">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
+                                    Organos</a>
                                 </nav>
                             </div>
                           
                             <div class="sb-sidenav-menu-heading">Eleccion</div>
-                            <a class="nav-link" href="/home/total/">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <a class="nav-link" href="/home/total">
+                                <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
                                 Resultados
                             </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Table
+                            <a class="nav-link" href="/home/estadisticas">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                                Graficas
                             </a>
                         </div>
                     </div>
