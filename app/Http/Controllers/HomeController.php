@@ -20,6 +20,8 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin',['only'=>'index']);
+        $this->middleware('admin',['only'=>'viewVotos']);
+        $this->middleware('admin',['only'=>'estadisticas']);
     }
 
     /**
@@ -29,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('admin.home');
     }
 
     
@@ -37,7 +39,7 @@ class HomeController extends Controller
     public function inicio(){
 
         
-        return view('user');
+        return view('inicio.organos');
     }
 
     public function apiOrganos(){
@@ -55,7 +57,7 @@ class HomeController extends Controller
         $sql_organos = 'SELECT * FROM `organos` WHERE id='.$id;
         $organo= DB::select($sql_organos);
 
-        return view('votar')->with('organo', $organo);
+        return view('inicio.votar')->with('organo', $organo);
        
     }
 
@@ -119,7 +121,7 @@ class HomeController extends Controller
 
     public function viewVotos(){
 
-        return view('total');
+        return view('admin.total');
     }
 
     public function apiTotalVotos()
@@ -150,19 +152,39 @@ class HomeController extends Controller
 
     public function apiEstadisticaCandidatos()
     {
-        //SQL Para saber el total de votos por candidatos
+        ///SQL Para saber el total de votos por candidatos
         $votos_candidatos = DB::table('candidatos')
-            ->join('votos', 'candidatos.id', '=', 'votos.candidatos_id')
-            ->join('organos', 'candidatos.organo_id', '=', 'organos.id')
-            ->select(DB::raw('candidatos.nombre, candidatos.apellido, organos.nombre as organo_nombre, COUNT(*) as votos'))
-            ->groupBy('candidatos.nombre', 'candidatos.apellido','organos.nombre')->get();
+        ->join('votos', 'candidatos.id', '=', 'votos.candidatos_id')
+        ->join('organos', 'candidatos.organo_id', '=', 'organos.id')
+        ->select(DB::raw('candidatos.nombre, candidatos.apellido, organos.nombre as organo_nombre, COUNT(*) as votos'))
+        ->groupBy('candidatos.nombre', 'candidatos.apellido','organos.nombre')->get();
+    
+        //SQL para el total de votos
+        $total_votos = DB::table('votos')
+        ->select(DB::raw('COUNT(*) as total_votos'))
+        ->get();
+
+        //SQL para el filtro de organos
+        $organos = DB::table('organos')
+        ->select('*')
+        ->get();
+
+        ///SQL Para saber el total de votos por candidatos
+        $votos_organos = DB::table('votos')
+        ->join('candidatos', 'candidatos.id', '=', 'votos.candidatos_id')
+        ->join('organos', 'candidatos.organo_id', '=', 'organos.id')
+        ->select(DB::raw('COUNT(*) as votos_organo, organos.nombre'))
+        ->groupBy('organos.nombre')->get();
         
-        return response()->json(array("votos_candidatos"=> $votos_candidatos
+        return response()->json(array("votos_candidatos"=> $votos_candidatos, 
+        "total_votos"=>$total_votos,
+        "organos"=>$organos,
+        "votos_organos"=>$votos_organos
         ));
     }
 
     public function estadisticas()
     {
-        return view('estadisticas');
+        return view('admin.estadisticas');
     }
 }

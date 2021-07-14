@@ -8,9 +8,29 @@
 
 <div class="container">
 
-<h1>
-Bievenidos
-</h1>
+
+                              @guest
+                                    @if (Route::has('login'))
+                                        <h1 class="text-center mb-5">Bienvenido</h1>
+                                    @endif
+                                    
+                                @else
+                                <div class="row mb-5">
+                                  <div class="col-sm-6">
+                                  <div class="card">
+                                    <h5 class="card-header">Bienvenido</h5>
+                                    <div class="card-body">
+                                      <h5 class="card-title">Agradecemos su voto</h5>
+                                      <a href="/inicio" class="btn btn-primary">Ir a votar</a>
+                                    </div>
+                                  </div>
+                                  </div>
+                                 
+                                </div>
+
+                                    
+
+                              @endguest
 
 
 

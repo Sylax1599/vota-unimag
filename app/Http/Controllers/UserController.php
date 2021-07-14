@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -102,4 +103,12 @@ class UserController extends Controller
             Excel::import($import, request()->file('file'));
             return view('users.import', ['numRows'=>$import->getRowCount()]);
         }
+
+    public function total_votantes(){
+        $users= DB::table('users')
+        ->select(DB::raw('COUNT(*) as total_votantes'))->get();
+       
+
+        return  response()->json(array("votantes"=> $users));
+    }
 }
